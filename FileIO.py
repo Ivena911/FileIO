@@ -9,12 +9,13 @@ from tkinter import messagebox as mb
 
 history_file = "upload_history.json"
 
+
 def save_history(file_path,link):
     history = []
     if os.path.exists(history_file):
         with open(history_file,"r") as f:
             history = json.load(f)
-    history.append({file_path: os.path.basename(file_path), "download_link": link})
+    history.append({"file_path:": os.path.basename(file_path), "download_link": link})
     with open(history_file, "w") as f:
         json.dump(history, f, indent=4)
 
@@ -53,7 +54,7 @@ def show_history():
     with open(history_file,"r") as f:
         history = json.load(f)
         for item in history:
-            files_listbox.insert(END,item['file_path'])
+            files_listbox.insert(END,item['file_path:'])
             links_listbox.insert(END,item['download_link'])
 
 
